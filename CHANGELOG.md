@@ -1,14 +1,14 @@
-## [Change log](https://github.com/AfterShip/email-verifier/releases)
+## [Change log](https://github.com/Connect10x/email-verifier/releases)
 
 v1.4.0
 ----------
-* Feature: Support Gmail&Yahoo SMTP check by API [#76](https://github.com/AfterShip/email-verifier/pull/88)
-* Optimization: Return HasMXRecord as true when at least one valid mx records exist [#94](https://github.com/AfterShip/email-verifier/pull/94)
+* Feature: Support Gmail&Yahoo SMTP check by API [#76](https://github.com/Connect10x/email-verifier/pull/88)
+* Optimization: Return HasMXRecord as true when at least one valid mx records exist [#94](https://github.com/Connect10x/email-verifier/pull/94)
 * Update Dependencies
 
 v1.3.3
 ----------
-* Making catchAll detection optional [#76](https://github.com/AfterShip/email-verifier/pull/76)
+* Making catchAll detection optional [#76](https://github.com/Connect10x/email-verifier/pull/76)
 * When the user enables `EnableAutoUpdateDisposable()`, the disposable domains configuration is updated once by default.
 * Update test cases
 * Update Dependencies
