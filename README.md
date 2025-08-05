@@ -13,6 +13,7 @@
 - Email Address Validation: validates if a string contains a valid email.
 - Email Verification Lookup via SMTP: performs an email verification on the passed email (catchAll detection enabled by default)
 - MX Validation: checks the DNS MX records for the given domain name
+- SPF & DMARC Validation: checks the domain's SPF and DMARC DNS records
 - Misc Validation: including Free email provider check, Role account validation, Disposable emails address (DEA) validation
 - Email Reachability: checks how confident in sending an email to the address
 
@@ -66,16 +67,18 @@ func main() {
 			"reachable":"unknown",
 			"role_account":false,
 			"free":false,
-			"syntax":{
-			"username":"example",
-				"domain":"exampledomain.org",
-				"valid":true
-			},
-			"has_mx_records":true,
-			"smtp":null,
-			"gravatar":null
-		}
-	*/
+                        "syntax":{
+                        "username":"example",
+                                "domain":"exampledomain.org",
+                                "valid":true
+                        },
+                        "has_mx_records":true,
+                        "spf_valid":false,
+                        "dmarc_valid":false,
+                        "smtp":null,
+                        "gravatar":null
+                }
+        */
 }
 ```
 

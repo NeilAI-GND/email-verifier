@@ -35,6 +35,8 @@ type Result struct {
 	RoleAccount  bool      `json:"role_account"`   // is account a role-based account
 	Free         bool      `json:"free"`           // is domain a free email domain
 	HasMxRecords bool      `json:"has_mx_records"` // whether or not MX-Records for the domain
+	SPFValid     bool      `json:"spf_valid"`      // whether domain has valid SPF record
+	DMARCValid   bool      `json:"dmarc_valid"`    // whether domain has valid DMARC record
 }
 
 // additional list of disposable domains set via users of this library
@@ -87,6 +89,9 @@ func (v *Verifier) Verify(email string) (*Result, error) {
 		return &ret, err
 	}
 	ret.HasMxRecords = mx.HasMXRecord
+
+	ret.SPFValid = v.CheckSPF(syntax.Domain)
+	ret.DMARCValid = v.CheckDMARC(syntax.Domain)
 
 	smtp, err := v.CheckSMTP(syntax.Domain, syntax.Username)
 	if err != nil {
