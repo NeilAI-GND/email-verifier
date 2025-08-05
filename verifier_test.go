@@ -24,6 +24,8 @@ func TestCheckEmailOK_SMTPHostNotExists(t *testing.T) {
 			Valid:    true,
 		},
 		HasMxRecords: false,
+		SPFValid:     false,
+		DMARCValid:   false,
 		Disposable:   false,
 		RoleAccount:  false,
 		Reachable:    reachableUnknown,
@@ -43,6 +45,9 @@ func TestCheckEmailOK_SMTPHostExists_NotCatchAll(t *testing.T) {
 		email    = address
 	)
 
+	spfValid := verifier.CheckSPF(domain)
+	dmarcValid := verifier.CheckDMARC(domain)
+
 	ret, err := verifier.Verify(email)
 	expected := Result{
 		Email: email,
@@ -52,6 +57,8 @@ func TestCheckEmailOK_SMTPHostExists_NotCatchAll(t *testing.T) {
 			Valid:    true,
 		},
 		HasMxRecords: true,
+		SPFValid:     spfValid,
+		DMARCValid:   dmarcValid,
 		Reachable:    reachableUnknown,
 		Disposable:   false,
 		RoleAccount:  false,
@@ -77,6 +84,9 @@ func TestCheckEmailOK_SMTPHostExists_FreeDomain(t *testing.T) {
 		email    = address
 	)
 
+	spfValid := verifier.CheckSPF(domain)
+	dmarcValid := verifier.CheckDMARC(domain)
+
 	ret, err := verifier.Verify(email)
 	expected := Result{
 		Email: email,
@@ -86,6 +96,8 @@ func TestCheckEmailOK_SMTPHostExists_FreeDomain(t *testing.T) {
 			Valid:    true,
 		},
 		HasMxRecords: true,
+		SPFValid:     spfValid,
+		DMARCValid:   dmarcValid,
 		Reachable:    reachableNo,
 		Disposable:   false,
 		RoleAccount:  false,
@@ -120,6 +132,8 @@ func TestCheckEmail_ErrorSyntax(t *testing.T) {
 			Valid:    false,
 		},
 		HasMxRecords: false,
+		SPFValid:     false,
+		DMARCValid:   false,
 		Reachable:    reachableUnknown,
 		Disposable:   false,
 		RoleAccount:  false,
@@ -148,6 +162,8 @@ func TestCheckEmail_Disposable(t *testing.T) {
 			Valid:    true,
 		},
 		HasMxRecords: false,
+		SPFValid:     false,
+		DMARCValid:   false,
 		Reachable:    reachableUnknown,
 		Disposable:   true,
 		RoleAccount:  false,
