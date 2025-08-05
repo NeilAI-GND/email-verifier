@@ -9,7 +9,7 @@ import (
 
 	"github.com/julienschmidt/httprouter"
 
-	emailVerifier "github.com/AfterShip/email-verifier"
+	emailVerifier "github.com/Connect10x/email-verifier"
 )
 
 func GetEmailVerification(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {

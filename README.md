@@ -2,11 +2,11 @@
 
 ✉️ A Go library for email verification without sending any emails.
 
-[![Build Status](https://github.com/AfterShip/email-verifier/workflows/CI%20Actions/badge.svg)](https://github.com/AfterShip/email-verifier/actions)
-[![Godoc](http://img.shields.io/badge/godoc-reference-blue.svg?style=flat)](https://godoc.org/github.com/AfterShip/email-verifier)
-[![Coverage Status](https://coveralls.io/repos/github/AfterShip/email-verifier/badge.svg?t=VTgVfL)](https://coveralls.io/github/AfterShip/email-verifier)
-[![Go Report Card](https://goreportcard.com/badge/github.com/AfterShip/email-verifier)](https://goreportcard.com/report/github.com/AfterShip/email-verifier)
-[![license](http://img.shields.io/badge/license-MIT-red.svg?style=flat)](https://github.com/AfterShip/email-verifier/blob/main/LICENSE)
+[![Build Status](https://github.com/Connect10x/email-verifier/workflows/CI%20Actions/badge.svg)](https://github.com/Connect10x/email-verifier/actions)
+[![Godoc](http://img.shields.io/badge/godoc-reference-blue.svg?style=flat)](https://godoc.org/github.com/Connect10x/email-verifier)
+[![Coverage Status](https://coveralls.io/repos/github/Connect10x/email-verifier/badge.svg?t=VTgVfL)](https://coveralls.io/github/Connect10x/email-verifier)
+[![Go Report Card](https://goreportcard.com/badge/github.com/Connect10x/email-verifier)](https://goreportcard.com/report/github.com/Connect10x/email-verifier)
+[![license](http://img.shields.io/badge/license-MIT-red.svg?style=flat)](https://github.com/Connect10x/email-verifier/blob/main/LICENSE)
 
 ## Features
 
@@ -22,7 +22,7 @@
 Use `go get` to install this package.
 
 ```shell script
-go get -u github.com/AfterShip/email-verifier
+go get -u github.com/Connect10x/email-verifier
 ```
 
 ## Usage
@@ -37,7 +37,7 @@ package main
 import (
 	"fmt"
 	
-	emailverifier "github.com/AfterShip/email-verifier"
+        emailverifier "github.com/Connect10x/email-verifier"
 )
 
 var (
@@ -194,11 +194,11 @@ func main() {
 
 > Note: When using the `Verify()` method, domain typo checking is not enabled by default, you can enable it in a verifier with `EnableDomainSuggest()`
  
-For more detailed documentation, please check on godoc.org 👉 [email-verifier](https://godoc.org/github.com/AfterShip/email-verifier)
+For more detailed documentation, please check on godoc.org 👉 [email-verifier](https://godoc.org/github.com/Connect10x/email-verifier)
 
 ## API 
 
-We provide a simple **self-hosted** [API server](https://github.com/AfterShip/email-verifier/tree/main/cmd/apiserver) script for reference.
+We provide a simple **self-hosted** [API server](https://github.com/Connect10x/email-verifier/tree/main/cmd/apiserver) script for reference.
 
 The API interface is very simple. All you need to do is to send a GET request with the following URL.
 
@@ -208,7 +208,7 @@ The `email` parameter would be the target email you want to verify.
 
 ## Similar Libraries Comparison
 
-|                                     | [email-verifier](https://github.com/AfterShip/email-verifier) | [trumail](https://github.com/trumail/trumail) | [check-if-email-exists](https://reacher.email/) | [freemail](https://github.com/willwhite/freemail) |
+|                                     | [email-verifier](https://github.com/Connect10x/email-verifier) | [trumail](https://github.com/trumail/trumail) | [check-if-email-exists](https://reacher.email/) | [freemail](https://github.com/willwhite/freemail) |
 | ----------------------------------- | :----------------------------------------------------------: | :-------------------------------------------: | :---------------------------------------------: | :-----------------------------------------------: |
 | **Features**                        |                              〰️                              |                      〰️                       |                       〰️                        |                        〰️                         |
 | Disposable email address validation |                              ✅                               |       ✅, but not available in free lib        |                        ✅                        |                         ✅                         |
@@ -263,8 +263,8 @@ This means that the server does not allow real-time verification of an email rig
 
 ## Contributing
 
-For details on contributing to this repository, see the [contributing guide](https://github.com/AfterShip/email-verifier/blob/main/CONTRIBUTING.md).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Connect10x/email-verifier/blob/main/CONTRIBUTING.md).
 
 ## License
 
-This package is licensed under MIT license. See [LICENSE](https://github.com/AfterShip/email-verifier/blob/main/LICENSE) for details.
+This package is licensed under MIT license. See [LICENSE](https://github.com/Connect10x/email-verifier/blob/main/LICENSE) for details.
