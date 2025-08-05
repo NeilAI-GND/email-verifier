@@ -47,13 +47,9 @@ func callJobFuncWithParams(jobFunc interface{}, params []interface{}) []reflect.
 	return f.Call(in)
 }
 
-// getMD5Hash use md5 to encode string
-// #nosec
-func getMD5Hash(str string) (error, string) {
-	h := md5.New()
-	_, err := h.Write([]byte(str))
-	if err != nil {
-		return err, ""
-	}
-	return nil, hex.EncodeToString(h.Sum(nil))
+// getMD5Hash encodes the given string with md5 and returns the hex string.
+// #nosec G401 - md5 is acceptable here for non-cryptographic hashing
+func getMD5Hash(str string) string {
+	sum := md5.Sum([]byte(str))
+	return hex.EncodeToString(sum[:])
 }

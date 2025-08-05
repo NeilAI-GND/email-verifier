@@ -18,41 +18,32 @@ type Gravatar struct {
 func (v *Verifier) CheckGravatar(email string) (*Gravatar, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
-	err, emailMd5 := getMD5Hash(strings.ToLower(strings.TrimSpace(email)))
-	if err != nil {
-		return nil, err
-	}
+	emailMd5 := getMD5Hash(strings.ToLower(strings.TrimSpace(email)))
 	gravatarUrl := gravatarBaseUrl + emailMd5 + "?d=404"
-	req, err := http.NewRequest("GET", gravatarUrl, nil)
-	if err != nil {
-		return nil, err
-	}
-	resp, err := http.DefaultClient.Do(req.WithContext(ctx))
+
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, gravatarUrl, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	defer func() {
-		_ = resp.Body.Close()
-	}()
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		return nil, err
+	}
+	defer func() { _ = resp.Body.Close() }()
+
+	if resp.StatusCode != http.StatusOK {
+		return &Gravatar{HasGravatar: false, GravatarUrl: ""}, nil
+	}
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
 	}
-	// check body
-	err, md5Body := getMD5Hash(string(body))
-	if err != nil {
-		return nil, err
+
+	if getMD5Hash(string(body)) == gravatarDefaultMd5 {
+		return &Gravatar{HasGravatar: false, GravatarUrl: ""}, nil
 	}
-	if md5Body == gravatarDefaultMd5 || resp.StatusCode != 200 {
-		return &Gravatar{
-			HasGravatar: false,
-			GravatarUrl: "",
-		}, nil
-	}
-	return &Gravatar{
-		HasGravatar: true,
-		GravatarUrl: gravatarUrl,
-	}, nil
+
+	return &Gravatar{HasGravatar: true, GravatarUrl: gravatarUrl}, nil
 }
